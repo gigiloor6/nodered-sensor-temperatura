@@ -1,1 +1,323 @@
-[]
+[
+    {
+        "id": "faa02b772c3bf57e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d2a0000000000001",
+        "type": "tab",
+        "label": "Sensor Temperatura",
+        "disabled": false,
+        "info": "Proyecto simple para demostrar Node-RED + GitHub con Dashboard 2.0: sensor simulado, gauge, LED de alarma y grafica."
+    },
+    {
+        "id": "d2a0000000000011",
+        "type": "ui-base",
+        "name": "Dashboard UPSE",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "navigationStyle": "default",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d2a0000000000012",
+        "type": "ui-theme",
+        "name": "Tema UPSE",
+        "colors": {
+            "surface": "#1565c0",
+            "primary": "#1565c0",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "6px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "d2a0000000000013",
+        "type": "ui-page",
+        "name": "Sensor",
+        "ui": "d2a0000000000011",
+        "path": "/sensor",
+        "icon": "thermometer",
+        "layout": "grid",
+        "theme": "d2a0000000000012",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "d2a0000000000014",
+        "type": "ui-group",
+        "name": "Sensor de temperatura",
+        "page": "d2a0000000000013",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "d2a0000000000002",
+        "type": "comment",
+        "z": "d2a0000000000001",
+        "name": "Sensor simulado -> Gauge + LED de alarma (> 30 °C) + Grafica  [Dashboard 2.0]",
+        "info": "",
+        "x": 330,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d2a0000000000003",
+        "type": "inject",
+        "z": "d2a0000000000001",
+        "name": "Cada 2 s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "d2a0000000000004"
+            ]
+        ]
+    },
+    {
+        "id": "d2a0000000000004",
+        "type": "function",
+        "z": "d2a0000000000001",
+        "name": "Simular temperatura",
+        "func": "// Genera una temperatura aleatoria entre 20 y 40 °C con un decimal\nconst temp = 20 + Math.random() * 20;\nmsg.payload = Math.round(temp * 10) / 10;\nmsg.topic = \"Temperatura\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "d2a0000000000005",
+                "d2a0000000000006",
+                "d2a0000000000007",
+                "d2a0000000000008"
+            ]
+        ]
+    },
+    {
+        "id": "d2a0000000000005",
+        "type": "ui-gauge",
+        "z": "d2a0000000000001",
+        "name": "Gauge temperatura",
+        "group": "d2a0000000000014",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#43a047"
+            },
+            {
+                "from": "25",
+                "color": "#fbc02d"
+            },
+            {
+                "from": "30",
+                "color": "#e53935"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 570,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2a0000000000006",
+        "type": "ui-chart",
+        "z": "d2a0000000000001",
+        "group": "d2a0000000000014",
+        "name": "Grafica",
+        "label": "Historial de temperatura",
+        "order": 3,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "yAxisLabel": "°C",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "50",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 3,
+        "showLegend": false,
+        "removeOlder": "2",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 4,
+        "className": "",
+        "interpolation": "linear",
+        "x": 550,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2a0000000000007",
+        "type": "function",
+        "z": "d2a0000000000001",
+        "name": "Evaluar alarma (> 30)",
+        "func": "// true = alarma (LED rojo), false = normal (LED verde)\nconst limite = 30;\nmsg.temperatura = msg.payload;\nmsg.payload = msg.payload > limite;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "d2a0000000000009"
+            ]
+        ]
+    },
+    {
+        "id": "d2a0000000000008",
+        "type": "debug",
+        "z": "d2a0000000000001",
+        "name": "Ver temperatura",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 560,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d2a0000000000009",
+        "type": "ui-template",
+        "z": "d2a0000000000001",
+        "group": "d2a0000000000014",
+        "page": "",
+        "ui": "",
+        "name": "LED alarma",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "head": "",
+        "format": "<template>\n  <div class=\"led-box\">\n    <div class=\"led\" :style=\"{ backgroundColor: color, boxShadow: '0 0 18px ' + color }\"></div>\n    <span class=\"led-text\">{{ texto }}</span>\n  </div>\n</template>\n\n<script>\nexport default {\n  computed: {\n    alarma () {\n      return this.msg && this.msg.payload === true\n    },\n    color () {\n      return this.alarma ? '#e53935' : '#43a047'\n    },\n    texto () {\n      if (!this.msg || this.msg.temperatura === undefined) return 'Esperando datos...'\n      return (this.alarma ? 'ALARMA: ' : 'Normal: ') + this.msg.temperatura + ' °C'\n    }\n  }\n}\n</script>\n\n<style scoped>\n.led-box { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%; padding: 8px; }\n.led { width: 60px; height: 60px; border-radius: 50%; transition: background-color 0.3s, box-shadow 0.3s; }\n.led-text { font-size: 18px; font-weight: bold; }\n</style>",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 790,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    }
+]
