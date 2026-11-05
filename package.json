@@ -1,0 +1,12 @@
+{
+    "name": "SensorTemperatura",
+    "description": "Sensor simulado con Dashboard 2.0 - Maestría UPSE",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
+        }
+    }
+}
