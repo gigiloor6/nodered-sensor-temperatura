@@ -158,7 +158,7 @@
         "height": 3,
         "gtype": "gauge-half",
         "gstyle": "needle",
-        "title": "Gauge Temp1",
+        "title": "Temperatura Planta IoT",
         "units": "°C",
         "icon": "",
         "prefix": "",
