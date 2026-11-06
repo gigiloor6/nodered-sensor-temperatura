@@ -1,6 +1,6 @@
 {
     "name": "SensorTemperatura",
-    "description": "Sensor simulado con Dashboard 2.0 - Maestría UPSE",
+    "description": "Sensor simulado con Dashboard 2.0",
     "version": "0.0.1",
     "dependencies": {
         "@flowfuse/node-red-dashboard": "1.35.0"

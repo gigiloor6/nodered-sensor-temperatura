@@ -1,13 +1,5 @@
 [
     {
-        "id": "faa02b772c3bf57e",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "d2a0000000000001",
         "type": "tab",
         "label": "Sensor Temperatura",

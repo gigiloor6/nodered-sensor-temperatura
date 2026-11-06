@@ -1,7 +1,7 @@
 SensorTemperatura
 =================
 
-Sensor simulado con Dashboard 2.0 - Maestría UPSE
+Sensor simulado con Dashboard 2.0
 
 ### About
 
