@@ -166,7 +166,7 @@
         "height": 3,
         "gtype": "gauge-half",
         "gstyle": "needle",
-        "title": "Temperatura",
+        "title": "Gauge Temp1",
         "units": "°C",
         "icon": "",
         "prefix": "",
