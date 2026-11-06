@@ -256,7 +256,7 @@
         "type": "function",
         "z": "d2a0000000000001",
         "name": "Evaluar alarma (> 30)",
-        "func": "// true = alarma (LED rojo), false = normal (LED verde)\nconst limite = 30;\nmsg.temperatura = msg.payload;\nmsg.payload = msg.payload > limite;\nreturn msg;",
+        "func": "// true = alarma (LED rojo), false = normal (LED verde)\nconst limite = 25;\nmsg.temperatura = msg.payload;\nmsg.payload = msg.payload > limite;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
