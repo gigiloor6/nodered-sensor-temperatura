@@ -158,7 +158,7 @@
         "height": 3,
         "gtype": "gauge-half",
         "gstyle": "needle",
-        "title": "Temperatura Planta IoT",
+        "title": "Cambio el título del gauge a Temperatura Planta IoT.",
         "units": "°C",
         "icon": "",
         "prefix": "",
